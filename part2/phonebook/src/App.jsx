@@ -55,7 +55,12 @@ const App = () => {
                             setSuccessMessage(null)
                         }, 5000)
                     })
-
+                    .catch(error => {
+                        setSuccessMessage(`Error: ${error.response.data.error}`)
+                        setTimeout(() => {
+                            setSuccessMessage(null)
+                        }, 5000)
+                    })
             }
             return
         }
@@ -72,6 +77,12 @@ const App = () => {
                 setNewName('')
                 setNewNumber('')
                 setSuccessMessage(`Added ${returnedPerson.name}`)
+                setTimeout(() => {
+                    setSuccessMessage(null)
+                }, 5000)
+            })
+            .catch(error => {
+                setSuccessMessage(`Error: ${error.response.data.error}`)
                 setTimeout(() => {
                     setSuccessMessage(null)
                 }, 5000)
