@@ -3,6 +3,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const app = express();;
 
+const PORT = process.env.PORT || 3001;
+
 let persons = [
   {
     id: "1",
@@ -41,10 +43,6 @@ morgan.token("body", (request) => {
 app.use(cors());
 app.use(express.json());
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms :body"));
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
 
 app.get("/api/persons", (request, response) => {
   response.json(persons);
@@ -110,7 +108,6 @@ app.post("/api/persons", (request, response) => {
   response.json(person);
 });
 
-const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
